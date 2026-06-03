@@ -1,0 +1,10 @@
+# Dentro de la consola de MySQL (mysql -u root -p):
+INSTALL PLUGIN audit_log SONAME 'audit_log.so';
+# Verificar que el plugin está activo
+SHOW PLUGINS LIKE 'audit_log';
+# Configurar variables globales para registrar todas las
+conexiones y queries
+SET GLOBAL audit_log_policy = 'ALL';
+SET GLOBAL audit_log_format = 'JSON';
+# (Los logs se guardan por defecto en
+/var/lib/mysql/audit.log)

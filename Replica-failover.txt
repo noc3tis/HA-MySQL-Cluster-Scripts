@@ -1,0 +1,10 @@
+# 1. Conexión al Nodo 2 (Futuro Primario)
+mysqlsh clusteradmin@10.0.1.72
+# 2. Creación del clúster
+cluster = dba.createCluster('equipoK_cluster')
+# 3. Adición de los nodos secundarios al clúster (Proceso de
+sincronización inicial)
+cluster.addInstance('clusteradmin@10.0.1.219') # Nodo 1
+cluster.addInstance('clusteradmin@10.0.1.196') # Nodo 3
+# 4. Verificación del estado de Alta Disponibilidad
+cluster.status()

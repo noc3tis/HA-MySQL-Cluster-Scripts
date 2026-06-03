@@ -1,0 +1,18 @@
+# Actualización del sistema operativo
+sudo apt update && sudo apt upgrade -y
+# Instalación de MySQL Server, MySQL Shell y MySQL Router
+sudo apt install mysql-server mysql-shell mysql-router -y
+# Habilitar el servicio para que inicie con el sistema
+sudo systemctl enable mysql
+sudo systemctl start mysql
+# Apertura de puertos en el firewall de Ubuntu (Ejecutado en
+los 3 nodos)
+# 3306 (MySQL Clásico), 33060 (MySQL X Protocol), 9104
+(Exporter)
+sudo iptables -I INPUT 1 -m state --state NEW -p tcp --dport
+3306 -j ACCEPT
+sudo iptables -I INPUT 1 -m state --state NEW -p tcp --dport
+33060 -j ACCEPT
+sudo iptables -I INPUT 1 -m state --state NEW -p tcp --dport
+9104 -j ACCEPT
+sudo netfilter-persistent save

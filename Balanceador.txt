@@ -1,0 +1,11 @@
+# Inicialización del Router contra el clúster (Bootstrap)
+# Se ejecuta apuntando al nodo primario. El Router descarga la
+topología completa.
+sudo mysqlrouter --bootstrap clusteradmin@10.0.1.72:3306
+--user=mysqlrouter
+# Arrancar el servicio de balanceo
+sudo systemctl enable mysqlrouter
+sudo systemctl start mysqlrouter
+# Comprobación de los puertos de enrutamiento (Típicamente
+6446 para R/W y 6447 para R/O)
+netstat -tulnp | grep mysqlrouter

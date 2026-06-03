@@ -1,0 +1,10 @@
+# 1. Entrar a MySQL Shell como root local
+mysqlsh root@localhost
+# 2. Preparar la instancia para Alta Disponibilidad (Creación
+de usuario clusteradmin)
+# Este comando ajusta automáticamente el archivo mysqld.cnf
+con los GTIDs,
+# binlogs y server_id requeridos para InnoDB Cluster.
+dba.configureInstance('root@localhost')
+# (Durante el prompt interactivo se creó el usuario
+'clusteradmin' y se reinició el servicio).
